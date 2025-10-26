@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Developer</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,26 +26,25 @@
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
+
       </ul>
-      <button class="btn btn-outline-success">Iniciar Sesión</button>
-      <button class="btn btn-outline-primary ms-2">Registrarse</button>
-      <button *ngIf="autorizacionService.isAuthorized()" class="btn btn-outline-danger ms-2">Cerrar Sesión</button>
+
+      <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="logueadoCabecera">Pedidos</button>
+      <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="logueadoCabecera">Productos</button>
+      <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="logueadoCabecera">Clientes</button>
+
 
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" *ngIf="logueadoCabecera"/>
+        <button class="btn btn-outline-success" type="submit" *ngIf="logueadoCabecera">Search</button>
       </form>
+
+
+      <button class="btn btn-outline-success" *ngIf="!logueadoCabecera" (click)="validarUsuario()">Iniciar Sesión</button>
+      <button class="btn btn-outline-danger ms-2" *ngIf="logueadoCabecera" (click)="autorizacionService.isAuthorized()" (click)="cerrarSesion()">Cerrar Sesión</button>
+
+      
     </div>
   </div>
 </nav>
 
-
-<div class="card">
-  <img src="..." class="card-img-top" alt="...">
-
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
