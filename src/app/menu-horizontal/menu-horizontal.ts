@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AutorizacionService } from '../autorizacion';
-import { OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, RouterModule, Router } from "@angular/router"; 
+import { MatDialog } from '@angular/material/dialog';
+import { Login } from '../login/login';
 
 @Component({
   selector: 'app-menu-horizontal',
-  imports: [CommonModule,  MatToolbarModule, MatIconModule, MatButtonModule, RouterModule, RouterLink],
+  imports: [CommonModule,  MatToolbarModule, MatIconModule, MatButtonModule, RouterModule],
   templateUrl: './menu-horizontal.html',
   styleUrl: './menu-horizontal.css',
   standalone: true
@@ -18,7 +19,9 @@ export class MenuHorizontal  implements OnInit{
   logueadoCabecera: boolean = false;
 
 
-  constructor(public autorizacionService: AutorizacionService, private router: Router) {}
+  constructor(public autorizacionService: AutorizacionService, 
+              private router: Router, 
+              private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.autorizacionService.loguedo.subscribe((data) => {
@@ -28,7 +31,16 @@ export class MenuHorizontal  implements OnInit{
   }
 
   validarUsuario(){
-    this.autorizacionService.loguedo.next(true);
+    const dialogRef = this.dialog.open(Login, {
+      //width: '1000px',
+      data: { email: this.autorizacionService.email, password: this.autorizacionService.password }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.autorizacionService.loguedo.next(true);
+      }
+    });
   }
 
   iniciarSesion() {

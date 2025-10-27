@@ -20,27 +20,25 @@ interface Usuario {
   standalone: true
 })
 export class Login {
-  // 🔹 Controla qué panel mostrar (login o registro)
+  //Controla qué panel mostrar (login o registro)
   isSignUpActive = false;
 
-  // 🔹 Formularios reactivos
+  //Formularios reactivos
   registerForm!: FormGroup;
   loginForm!: FormGroup;
 
-  // 🔹 Datos quemados (usuarios simulados)
   usuarios: Usuario[] = [
     { nombreUsuario: 'juan23', correo: 'juan@mail.com', contrasenia: '12345' },
     { nombreUsuario: 'briggitte', correo: 'briggitte@mail.com', contrasenia: 'admin123' }
   ];
 
-  // 🔹 Control de mensajes y validaciones
   registerAttempt = false;
   mensaje = '';
 
   constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
-    // 🧱 Formulario de registro
+    //Formulario de registro
     this.registerForm = this.fb.group({
       nombreUsuario: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
@@ -49,20 +47,20 @@ export class Login {
       acepto: [false]
     });
 
-    // 🧱 Formulario de login
+    //Formulario de login
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
 
-  // 🔄 Alternar entre login y registro
+  //Alternar entre login y registro
   togglePanel(signUp: boolean): void {
     this.isSignUpActive = signUp;
     this.mensaje = ''; // limpia mensajes anteriores
   }
 
-  // 🧾 Registro de usuario (sin backend)
+  //Registro de usuario (sin backend)
   onRegister(): void {
     this.registerAttempt = true;
     this.mensaje = '';
@@ -91,7 +89,7 @@ export class Login {
     this.isSignUpActive = false;
   }
 
-  // 🔐 Inicio de sesión con datos quemados
+  //Inicio de sesión con datos quemados
   onLogin(): void {
     this.mensaje = '';
 
@@ -103,7 +101,7 @@ export class Login {
 
     if (usuario) {
       this.mensaje = `Bienvenido ${usuario.nombreUsuario} 👋`;
-      this.router.navigate(['/app-menu-horizontal']);
+      this.router.navigate(['/menu-horizontal']);
       this.loginForm.reset();
     } else {
       this.mensaje = '❌ Correo o contraseña incorrectos.';
