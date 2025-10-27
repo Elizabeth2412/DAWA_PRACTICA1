@@ -1,0 +1,63 @@
+<div class="container" [class.right-panel-active]="isSignUpActive" id="container">
+  <!-- Registro -->
+  <div class="form-container sign-up-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <h1>Crear Cuenta</h1>
+      <span>Utilice su correo electrónico para registrarse</span>
+
+      <input type="text" formControlName="nombreUsuario" placeholder="Nombre de usuario" />
+      <input type="email" formControlName="correo" placeholder="Email" />
+      <input type="password" formControlName="contrasenia" placeholder="Password" />
+      <input type="text" formControlName="telefono" placeholder="Teléfono (opcional)" />
+
+      <div class="d-flex align-items-center mt-2 mb-2" style="font-size: 13px;">
+        <input type="checkbox" formControlName="acepto" id="acepto" />
+        <label for="acepto" class="form-label mb-0">
+          Acepto los <a href="#" target="_blank">Términos y Condiciones</a>
+        </label>
+      </div>
+
+      <div *ngIf="!registerForm.get('acepto')?.value && registerAttempt" style="color: red; font-size: 12px;">
+        Debes aceptar los términos y condiciones.
+      </div>
+
+      <button type="submit">Registrarse</button>
+    </form>
+  </div>
+
+  <!-- Inicio de Sesión -->
+  <div class="form-container sign-in-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <h1>Iniciar Sesión</h1>
+      <span>Utilice su cuenta</span>
+
+      <input type="email" formControlName="email" placeholder="Correo" />
+      <input type="password" formControlName="password" placeholder="Contraseña" />
+
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>¡Bienvenido de Vuelta!</h1>
+        <p>Para mantenerte en contacto con nosotros, inicia sesión con tus datos personales</p>
+        <button class="ghost" (click)="togglePanel(false)">Iniciar Sesión</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>¡Hola!</h1>
+        <p>Introduce tus datos personales y agenda cita con nosotros</p>
+        <button class="ghost" (click)="togglePanel(true)">Registrarse</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mensaje general -->
+<div class="text-center mt-3" *ngIf="mensaje">
+  <p [ngClass]="{ 'text-success': mensaje.startsWith('✅'), 'text-danger': mensaje.startsWith('❌') }">
+    {{ mensaje }}
+  </p>
+</div>

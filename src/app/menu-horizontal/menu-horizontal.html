@@ -29,21 +29,18 @@
 
       </ul>
 
-      <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="logueadoCabecera">Pedidos</button>
-      <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="logueadoCabecera">Productos</button>
-      <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="logueadoCabecera">Clientes</button>
+      <button class="btn btn-sm btn-primary col-1 me-2">Pedidos</button>
+      <button class="btn btn-sm btn-primary col-1 me-2">Productos</button>
+      <button class="btn btn-sm btn-primary col-1 me-2">Clientes</button>
 
 
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" *ngIf="logueadoCabecera"/>
-        <button class="btn btn-outline-success" type="submit" *ngIf="logueadoCabecera">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" *ngIf="!logueadoCabecera"/>
+        <button class="btn btn-outline-success" type="submit" *ngIf="!logueadoCabecera">Search</button>
       </form>
 
-
-      <button class="btn btn-outline-success" *ngIf="!logueadoCabecera" (click)="validarUsuario()">Iniciar Sesión</button>
-      <button class="btn btn-outline-danger ms-2" *ngIf="logueadoCabecera" (click)="autorizacionService.isAuthorized()" (click)="cerrarSesion()">Cerrar Sesión</button>
-
-      
+      <button class="btn btn-outline-success" *ngIf="logueadoCabecera" routerLink="/app-login">Iniciar Sesión</button>
+      <button class="btn btn-outline-danger ms-2" (click)="cerrarSesion()">Cerrar Sesión</button>
     </div>
   </div>
 </nav>

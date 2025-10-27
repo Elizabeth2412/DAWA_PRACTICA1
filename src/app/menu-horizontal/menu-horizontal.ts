@@ -4,18 +4,21 @@ import { OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button'; 
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink, RouterModule, Router } from "@angular/router"; 
 
 @Component({
   selector: 'app-menu-horizontal',
-  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule    ],
+  imports: [CommonModule,  MatToolbarModule, MatIconModule, MatButtonModule, RouterModule, RouterLink],
   templateUrl: './menu-horizontal.html',
-  styleUrl: './menu-horizontal.css'
+  styleUrl: './menu-horizontal.css',
+  standalone: true
 })
 export class MenuHorizontal  implements OnInit{
   logueadoCabecera: boolean = false;
 
-  constructor(public autorizacionService: AutorizacionService) {}
+
+  constructor(public autorizacionService: AutorizacionService, private router: Router) {}
 
   ngOnInit(): void {
     this.autorizacionService.loguedo.subscribe((data) => {
@@ -28,8 +31,13 @@ export class MenuHorizontal  implements OnInit{
     this.autorizacionService.loguedo.next(true);
   }
 
+  iniciarSesion() {
+    this.autorizacionService.iniciarSesion();
+  }
+
   cerrarSesion(){
-    this.autorizacionService.loguedo.next(false);
+    this.autorizacionService.cerrarSesion();
+    this.router.navigate(['/login']);
   }
 
 }
