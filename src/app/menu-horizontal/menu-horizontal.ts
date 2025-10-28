@@ -39,17 +39,21 @@ export class MenuHorizontal  implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.autorizacionService.loguedo.next(true);
+        this.router.navigate(['/principal']);
       }
     });
+
+
   }
 
   iniciarSesion() {
     this.autorizacionService.iniciarSesion();
+
   }
 
   cerrarSesion(){
     this.autorizacionService.cerrarSesion();
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 
 }

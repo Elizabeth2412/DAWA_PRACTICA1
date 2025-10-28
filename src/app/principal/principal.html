@@ -1,0 +1,128 @@
+<!-- principal.component.html -->
+<div class="dashboard-container">
+  <!-- Header -->
+  <div class="header">
+    <h1>Dashboard Principal</h1>
+    <p>Resumen de métricas y estadísticas del negocio</p>
+  </div>
+
+  <!-- Tarjetas de Métricas -->
+  <div class="metricas-grid">
+    <div class="metrica-card" *ngFor="let metrica of metricas">
+      <div class="metrica-header">
+        <div class="icono-container" [ngClass]="metrica.color">
+          <span class="icono">{{ metrica.icono }}</span>
+        </div>
+        <div class="cambio" [ngClass]="metrica.tendencia === 'up' ? 'cambio-positivo' : 'cambio-negativo'">
+          <span class="flecha">{{ metrica.tendencia === 'up' ? '↑' : '↓' }}</span>
+          {{ metrica.cambio }}
+        </div>
+      </div>
+      <h3>{{ metrica.titulo }}</h3>
+      <p class="valor">{{ metrica.valor }}</p>
+    </div>
+  </div>
+
+  <!-- Gráficos en Grid -->
+  <div class="graficos-grid">
+    <!-- Ventas Mensuales -->
+    <div class="grafico-card">
+      <h2>Ventas y Gastos Mensuales</h2>
+      <div class="tabla-datos">
+        <div class="tabla-header">
+          <div class="col-mes">Mes</div>
+          <div class="col-ventas">Ventas</div>
+          <div class="col-gastos">Gastos</div>
+        </div>
+        <div class="tabla-row" *ngFor="let venta of ventasMensuales">
+          <div class="col-mes">{{ venta.mes }}</div>
+          <div class="col-ventas">
+            <div class="barra-container">
+              <div class="barra barra-ventas" [style.width]="getBarWidth(venta.ventas)"></div>
+              <span class="valor-barra">${{ venta.ventas }}</span>
+            </div>
+          </div>
+          <div class="col-gastos">
+            <div class="barra-container">
+              <div class="barra barra-gastos" [style.width]="getBarWidth(venta.gastos)"></div>
+              <span class="valor-barra">${{ venta.gastos }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="tabla-total">
+          <div class="col-mes"><strong>Total</strong></div>
+          <div class="col-ventas"><strong>${{ getTotalVentas() }}</strong></div>
+          <div class="col-gastos"><strong>${{ getTotalGastos() }}</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categorías -->
+    <div class="grafico-card">
+      <h2>Distribución por Categoría</h2>
+      <div class="categorias-list">
+        <div class="categoria-item" *ngFor="let categoria of categorias">
+          <div class="categoria-info">
+            <span class="categoria-color" [style.background-color]="categoria.color"></span>
+            <span class="categoria-nombre">{{ categoria.nombre }}</span>
+          </div>
+          <div class="categoria-valor">
+            <div class="barra-progreso">
+              <div class="barra-fill" 
+                   [style.width]="categoria.valor + '%'" 
+                   [style.background-color]="categoria.color">
+              </div>
+            </div>
+            <span class="porcentaje">{{ categoria.valor }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Productos Top -->
+  <div class="grafico-card full-width">
+    <h2>Top 5 Productos Más Vendidos</h2>
+    <div class="productos-grid">
+      <div class="producto-item" *ngFor="let producto of productosTop; let i = index">
+        <div class="producto-ranking">{{ i + 1 }}</div>
+        <div class="producto-info">
+          <h4>{{ producto.nombre }}</h4>
+          <div class="producto-barra">
+            <div class="barra-producto" [style.width]="getBarWidth(producto.cantidad)"></div>
+          </div>
+        </div>
+        <div class="producto-cantidad">{{ producto.cantidad }} unidades</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de Actividad Reciente -->
+  <div class="grafico-card full-width">
+    <h2>Actividad Reciente</h2>
+    <div class="tabla-actividad">
+      <table>
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Monto</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let actividad of actividadReciente">
+            <td>{{ actividad.cliente }}</td>
+            <td>{{ actividad.producto }}</td>
+            <td class="monto">{{ actividad.monto }}</td>
+            <td>
+              <span class="badge" [ngClass]="actividad.estadoClase">
+                {{ actividad.estado }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

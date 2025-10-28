@@ -6,7 +6,7 @@ import { Copyright } from "./copyright/copyright";
 
 @Component({
   selector: 'app-root',
-  imports: [MenuHorizontal, Copyright],
+  imports: [MenuHorizontal, Copyright, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

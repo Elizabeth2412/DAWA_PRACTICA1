@@ -1,0 +1,184 @@
+*{
+    scroll-behavior: smooth;
+}
+
+ /*Selectores de elemento*/
+
+header{
+    background: #041f4d;
+    color: #ffffff;
+    padding: 20px ;
+    text-align: center;
+    border-radius: 10px;
+    border: double 6px;
+}
+
+nav{
+    text-align: center;
+    padding: 20px;
+    margin: 5px;
+    background: rgb(240, 228, 228);
+    border-radius: 10px;    
+}
+
+a{
+    text-decoration: none;
+    color:#ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid rgb(31, 44, 73);
+    background-color: #041f4d;
+    margin-top: 20px;
+    margin-right: 50px;
+}
+
+footer{
+    background: #041f4d;
+    margin: 0;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px;
+}
+
+ /*Selectores de ID*/
+
+#galeria{
+    margin-left: 40px;
+    justify-content: center;
+}
+
+#salud{
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+}         
+
+#otras-noticias{
+    background: rgb(150, 151, 187);
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/*Selectores de clase*/
+
+.img-redes{
+    width: 35px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.noticia{
+    margin:10px;
+    background: rgb(247, 246, 246);
+    min-width: 105px;
+    height: auto;
+    min-height: 550px;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.otras{
+    margin:10px;
+    border: #041f4d solid 3px;
+    border-radius: 8px;
+    min-width: 105px;
+    height: auto;
+    min-height: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+
+/*Selector Agrupado*/
+
+h1, h3{
+    font-family: Georgia, 'Times New Roman', Times, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+
+
+/*Selector Contextual*/
+
+article img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+    justify-content: center;
+    object-fit: cover;
+}
+
+article a{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    background: #041f4d;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+article time{
+    font-size: 0.8em;
+    color: #b1acac;
+    margin-bottom: 10px;
+}
+
+aside img{
+    border:3px solid #4f58ad;
+    width: 60%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.otras a{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+/*PseudoClases*/
+
+a:hover{
+    background: rgb(38, 50, 75);
+    color: #ffffff;
+}
+
+
+footer a:visited{
+    background: rgb(38, 50, 75);
+    color: #ffffff;
+}
+
+img:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+/*PseudoElementos*/
+
+article p::first-letter{
+    font-size: 2em;
+    font-weight: bold;
+    color: #041f4d;
+}
+
+p::selection{
+    background: #1e3f74;
+    color: #ffffff;
+}

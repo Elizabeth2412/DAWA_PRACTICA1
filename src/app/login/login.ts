@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, NgModule } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from "@angular/router";
 import { RouterModule } from "@angular/router";
 import { Router } from '@angular/router';
+import { AutorizacionService } from '../autorizacion';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 
 interface Usuario {
   nombreUsuario: string;
@@ -14,14 +17,18 @@ interface Usuario {
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
-  standalone: true
+  //standalone: true
 })
 export class Login {
   //Controla qué panel mostrar (login o registro)
   isSignUpActive = false;
+
+  //Variables para pruebas de ngModel 
+  emailTest: string = '';
+  passwordTest: string = '';
 
   //Formularios reactivos
   registerForm!: FormGroup;
@@ -35,7 +42,7 @@ export class Login {
   registerAttempt = false;
   mensaje = '';
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router, private autorizacionService: AutorizacionService, private dialogRef: MatDialogRef<Login>) {}
 
   ngOnInit(): void {
     //Formulario de registro
@@ -47,7 +54,7 @@ export class Login {
       acepto: [false]
     });
 
-    //Formulario de login
+    //Formulario REACTIVO de login
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -89,22 +96,43 @@ export class Login {
     this.isSignUpActive = false;
   }
 
+
+  //accedo desde el login con el metodo del ing charco
+  validarAcceso(): void {
+    alert('Validando Usuario...');
+    this.autorizacionService.loguedo.next(true);
+    this.dialogRef.close(true);
+    this.router.navigate(['/principal']);
+
+  }
+
   //Inicio de sesión con datos quemados
   onLogin(): void {
     this.mensaje = '';
 
-    const { email, password } = this.loginForm.value;
+    //Descomentar si vas a usar formularios reactivos
+    //const { email, passwordt } = this.loginForm.value;
 
+    //Usando ngModel
     const usuario = this.usuarios.find(
-      u => u.correo === email && u.contrasenia === password
+      u => u.correo === this.emailTest && u.contrasenia === this.passwordTest
     );
 
     if (usuario) {
+      this.autorizacionService.loguedo.next(true);
       this.mensaje = `Bienvenido ${usuario.nombreUsuario} 👋`;
-      this.router.navigate(['/menu-horizontal']);
+      this.dialogRef.close(true);
+      this.router.navigate(['/principal']);
       this.loginForm.reset();
     } else {
       this.mensaje = '❌ Correo o contraseña incorrectos.';
+      this.timerMensaje();
     }
+  }
+
+  timerMensaje(): void {
+    setTimeout(() => {
+      this.mensaje = '';
+    }, 2000); 
   }
 }

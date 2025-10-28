@@ -1,0 +1,402 @@
+/* principal.component.css */
+
+.dashboard-container {
+  padding: 2rem;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+.header p {
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Grid de Métricas */
+.metricas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.metrica-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.metrica-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.metrica-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.icono-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.bg-blue { background-color: #3b82f6; }
+.bg-green { background-color: #10b981; }
+.bg-purple { background-color: #8b5cf6; }
+.bg-orange { background-color: #f59e0b; }
+
+.cambio {
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cambio-positivo {
+  color: #10b981;
+}
+
+.cambio-negativo {
+  color: #ef4444;
+}
+
+.flecha {
+  font-size: 1.2rem;
+}
+
+.metrica-card h3 {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.metrica-card .valor {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* Grid de Gráficos */
+.graficos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.grafico-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grafico-card.full-width {
+  margin-bottom: 2rem;
+}
+
+.grafico-card h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Tabla de Datos (Ventas) */
+.tabla-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tabla-header,
+.tabla-row,
+.tabla-total {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.tabla-header {
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 0.875rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.75rem;
+}
+
+.tabla-row {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tabla-total {
+  border-top: 2px solid #e5e7eb;
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.barra-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.barra {
+  height: 24px;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.barra-ventas {
+  background-color: #3b82f6;
+}
+
+.barra-gastos {
+  background-color: #ef4444;
+}
+
+.valor-barra {
+  font-size: 0.875rem;
+  color: #1f2937;
+  font-weight: 500;
+  min-width: 60px;
+}
+
+/* Categorías */
+.categorias-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.categoria-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.categoria-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 120px;
+}
+
+.categoria-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.categoria-nombre {
+  font-size: 0.9rem;
+  color: #1f2937;
+}
+
+.categoria-valor {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.barra-progreso {
+  flex: 1;
+  height: 20px;
+  background-color: #f3f4f6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.barra-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.porcentaje {
+  font-weight: 600;
+  color: #1f2937;
+  min-width: 50px;
+  text-align: right;
+}
+
+/* Productos Grid */
+.productos-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.producto-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.producto-item:hover {
+  background-color: #f3f4f6;
+}
+
+.producto-ranking {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.producto-info {
+  flex: 1;
+}
+
+.producto-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: #1f2937;
+  font-size: 1rem;
+}
+
+.producto-barra {
+  height: 12px;
+  background-color: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.barra-producto {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.producto-cantidad {
+  font-weight: 600;
+  color: #1f2937;
+  min-width: 120px;
+  text-align: right;
+}
+
+/* Tabla de Actividad */
+.tabla-actividad {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f9fafb;
+}
+
+th {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: #1f2937;
+}
+
+.monto {
+  font-weight: 600;
+}
+
+.badge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.estado-completado {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.estado-pendiente {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.estado-enviado {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .metricas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .graficos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tabla-header,
+  .tabla-row,
+  .tabla-total {
+    grid-template-columns: 80px 1fr 1fr;
+    font-size: 0.875rem;
+  }
+
+  .producto-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .producto-cantidad {
+    text-align: left;
+  }
+}
