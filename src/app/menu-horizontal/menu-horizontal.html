@@ -51,7 +51,7 @@
     <span class="example-spacer"></span>
     <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="logueadoCabecera">Pedidos</button>
     <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="logueadoCabecera">Facturar</button>
-    <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="logueadoCabecera">Inventario</button>
+    <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="logueadoCabecera" (click)="visualizarinventario()">Inventario</button>
 
     <button class="btn btn-sm btn-primary col-1 me-2" *ngIf="!logueadoCabecera" (click)="validarUsuario()">Iniciar Sesión</button>
     <button class="btn btn-sm btn-danger col-1 me-2" *ngIf="logueadoCabecera" (click)="cerrarSesion()">Cerrar Sesión</button>

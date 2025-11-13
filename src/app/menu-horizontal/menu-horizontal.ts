@@ -56,4 +56,8 @@ export class MenuHorizontal  implements OnInit{
     this.router.navigate(['']);
   }
 
+  visualizarinventario(){
+    this.router.navigate(['/inventario']);
+  }
+
 }

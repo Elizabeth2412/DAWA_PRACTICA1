@@ -3,6 +3,7 @@ import { Login } from './login/login';
 import { MenuHorizontal } from './menu-horizontal/menu-horizontal';
 import { PaginaInicial } from './pagina-inicial/pagina-inicial';
 import { Principal } from './principal/principal';
+import { Inventario } from './inventario/inventario';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -10,5 +11,6 @@ export const routes: Routes = [
   //{ path: '**', redirectTo: '' },
   { path: 'login', component: Login },
   { path: 'menu-horizontal', component: MenuHorizontal },
-  { path:'principal', component: Principal }
+  { path:'principal', component: Principal },
+  { path: 'inventario', component: Inventario}
 ];
